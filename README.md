@@ -94,9 +94,9 @@ jsonux data.json filters/product-filter.jq
 +-------------------------+-----------------------------+
 ```
 ## 🧠 Notes
-If no filter file is provided, a temp file at /tmp/jq_filter.jq is created and loaded in Neovim.
-
-Pressing prefix + r re-runs the current filter from the jq file and refreshes the top-right output pane.
+- If no filter file is provided, a temp file at /tmp/jq_filter.jq is created and loaded in Neovim.
+- Pressing prefix `+ r` re-runs the current filter from the jq file and refreshes the top-right output pane.
+- **Standard `tmux` and `jless` commands work as well** — feel free to navigate, zoom, split, or search as you normally would.
 
 ## 📜 License
 MIT — use freely, modify joyfully.

@@ -38,7 +38,7 @@ sudo mv jless-* /usr/local/bin/jless
 ## ⚙️ Install the Script
 ### 1. Download or copy the script file (e.g. jsonux) to a known location:
 ```bash
-curl -o ~/bin/jsonux https://raw.githubusercontent.com/yourusername/jsonux/main/jsonux
+curl -Lo ~/bin/jsonux https://raw.githubusercontent.com/Deep-Adhikary/jsonux/main/jsonux
 ```
 ### 2. Make it executable:
 

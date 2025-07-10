@@ -36,16 +36,16 @@ chmod +x jless-*
 sudo mv jless-* /usr/local/bin/jless
 ```
 ## ⚙️ Install the Script
-- Download or copy the script file (e.g. jsonux) to a known location:
+### 1. Download or copy the script file (e.g. jsonux) to a known location:
 ```bash
 curl -o ~/bin/jsonux https://raw.githubusercontent.com/yourusername/jsonux/main/jsonux
 ```
-- Make it executable:
+### 2. Make it executable:
 
 ```bash
 chmod +x ~/bin/jsonux
 ```
-- Ensure the path is in your shell profile:
+### 3. Ensure the path is in your shell profile:
 For Zsh (~/.zshrc):
 
 ```bash

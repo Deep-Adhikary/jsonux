@@ -53,7 +53,7 @@ For Zsh (~/.zshrc):
 export PATH="$HOME/bin:$PATH"
 ```
 For Bash (~/.bashrc or ~/.bash_profile):
-```
+```bash
 export PATH="$HOME/bin:$PATH"
 ```
 Then reload:

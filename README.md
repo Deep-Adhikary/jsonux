@@ -10,7 +10,7 @@
 
 - View original JSON side-by-side with your jq-filtered output
 - Use Neovim to edit jq filters in a dedicated pane
-- Instantly re-run filters with a single key (prefix + `r`)
+- Instantly re-run filters with a single key ( `<Tmux Prefix Key>` + `r`)
 - Supports multi-line jq filters
 - Optional: provide your own jq filter file
 
@@ -95,7 +95,7 @@ jsonux data.json filters/product-filter.jq
 ```
 ## 🧠 Notes
 - If no filter file is provided, a temp file at /tmp/jq_filter.jq is created and loaded in Neovim.
-- Pressing prefix `+ r` re-runs the current filter from the jq file and refreshes the top-right output pane.
+- Pressing `<Tmux Prefix Key> + r` re-runs the current filter from the jq file and refreshes the top-right output pane (make sure to **save the file** first).
 - **Standard `tmux` and `jless` commands work as well** — feel free to navigate, zoom, split, or search as you normally would.
 
 ## 📜 License

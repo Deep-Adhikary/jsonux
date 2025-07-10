@@ -3,6 +3,7 @@
 > A terminal-based JSON exploration tool using `tmux`, `jless`, `jq`, and your favorite editor (`nvim` by default).  
 > Visually split your JSON file, write jq filters interactively, and preview results — all from a terminal layout.
 
+![Jsonux Demo](media/jsonux_demo.gif)
 ---
 
 ## 🧩 Features

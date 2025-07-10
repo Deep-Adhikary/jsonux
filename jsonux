@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# Usage: jsonux <path/to/file.json> [path/to/filter.jq]
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+  echo "Usage: $0 <path/to/file.json> [path/to/filter.jq]"
+  exit 1
+fi
+
+json="$1"
+session="jq_json_viewer"
+tmp_out="/tmp/jq_output.json"
+tmp_err="/tmp/jq_error.log"
+
+# If user passed a filter file, use it; otherwise create a temp one
+if [[ $# -eq 2 ]]; then
+  filt="$2"
+  # ensure it exists
+  touch "$filt"
+else
+  filt="/tmp/jq_filter.jq"
+  echo "# enter your jq filter here. prefix + r to run." > "$filt"
+fi
+
+# 1) kill any existing session
+tmux kill-session -t "$session" 2>/dev/null || true
+
+# 2) start a new, detached tmux session named “jq_json_viewer”
+tmux new-session -d -s "$session" -n main
+
+# 3) pane 0 (left): show the original JSON in jless
+tmux send-keys -t "$session":main.0 "jless '$json'" C-m
+
+# 4) pane 1 (top-right): split right of pane 0
+tmux split-window -h -t "$session":main.0
+
+# 5) pane 2 (bottom-right): split pane 1 downward
+tmux split-window -v -t "$session":main.1
+
+# 6) seed pane 1 with a placeholder
+echo "prefix + r to apply filter…" > "$tmp_out"
+tmux send-keys -t "$session":main.1 "jless '$tmp_out'" C-m
+
+# 7) in pane 2, open filter file in neovim
+tmux send-keys -t "$session":main.2 "nvim '$filt'" C-m
+
+# 8) bind prefix + r to re-run jq and refresh pane 1
+tmux bind-key r run-shell \
+  "jq -f '$filt' '$json' > '$tmp_out' 2> '$tmp_err' && \
+   tmux send-keys -t '$session':main.1 C-c && \
+   tmux send-keys -t '$session':main.1 \"jless '$tmp_out'\" C-m"
+
+# 9) focus the editor pane and attach
+tmux select-pane -t "$session":main.2
+tmux attach -t "$session"
